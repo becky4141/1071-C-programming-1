@@ -1,4 +1,4 @@
-#include <stdio.h>
+#inclde <stdio.h>
 
 int main (){
 
@@ -26,18 +26,15 @@ while(1){
                         printf("*");
                     else
                         printf(" ");
-
-                  }
-
-                printf("\n");
-              }
-
-              break;
+            }
+                        printf("\n");
+            }
+                    break;
 
           case 2:
               printf("Enter height and type: ");
               scanf("%d %d", &height , &type);
-
+              if(type==1){
               for(i=1;i<=height;i++){
                   for(j=1;j<=height;j++){
                     if(i==height || i==j || j==1)
@@ -45,17 +42,49 @@ while(1){
                     else
                         printf(" ");
 
-                  }
-
+            }
                         printf("\n");
-              }
-
-
-
-            break;
-
-
-}
-}
+            }
+                    break;
+            }
+            if(type==2){
+	                for(i=1;i<=height;i++){
+	                  for(j=1;j<=height;j++){
+	                    if(i==height || j==height || i+j==height+1 )
+	                        printf("*");
+	                    else
+	                        printf(" ");
+	        }
+	                        printf("\n");
+	        }
+	                    break;                
+	        }
+           if(type==3){
+           	        for(i=1;i<=height;i++){
+           	          for(j=1;j<=height;j++){	
+           	            if(i==1 || j==1 || i+j==height+1)
+           	                printf("*");
+           	            else
+           	                printf(" ");
+		   }
+		                    printf("\n");
+           }
+           break;
+           }
+           if(type==4){
+           	        for(i=1;i<=height;i++){
+           	          for(j=1;j<=height;j++){		
+           	        	if(i==1 || j==height || i==j)	
+           	        	    printf("*");
+           	        	else
+           	        	    printf(" ");
+			}
+	          			    printf("\n");
+			}
+					    break;
+		    }
 return 0;
+
+}
+}
 }
