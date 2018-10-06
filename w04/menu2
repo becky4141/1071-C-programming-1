@@ -12,14 +12,13 @@ void drawRect(int height ,int width ,int filled)
     {
         for(int i=1;i<=height;i++)
         {
-            for(int j=1;j<=width;j++)
-            {
-                    printf("*");
-            }
+        	prchar('*',width);
+
             printf("\n");
         }
     }
-    else{
+    else
+	{
         for(int i=1;i<=height;i++){
             for(int j=1;j<=width;j++){
                 if(i==1 || i==height || j==1 || j==width)
@@ -32,6 +31,7 @@ void drawRect(int height ,int width ,int filled)
             printf("\n");
         }
     }
+    
 }
 
 void drawVertTri(int height ,int type ,int filled)
@@ -67,7 +67,7 @@ void drawVertTri(int height ,int type ,int filled)
 }
 void drawTri(int height , int type , int filled)
 {
-	if(type==0)
+	if(type==1)
 	{
 		if(filled)
 		{
@@ -98,7 +98,7 @@ void drawTri(int height , int type , int filled)
 			}
 		}
 	}
-	if(type==1)
+	if(type==2)
 	{
 		if(filled)
 		{
@@ -137,8 +137,7 @@ void drawTri(int height , int type , int filled)
 
 int main (){
 
-    int i ,j;
-    int choice;
+	int choice;
     int height;
     int width;
     int type;
@@ -160,16 +159,18 @@ int main (){
               printf("Enter height, width,filled: ");
               scanf("%d %d %d", &height , &width ,&filled);
               drawRect(height , width , filled);
+            break;
 
           case 2:
               printf("Enter height , type , filled: ");
               scanf("%d %d %d", &height , &type ,&filled);
               drawVertTri(height , type , filled);
-              
+              break;
           case 3:
           	  printf("Enter height , type , filled: ");
           	  scanf("%d %d %d",&height , &type , &filled);
           	  drawTri(height ,type , filled );
+          	  break;
 		}
    }
 return 0;
