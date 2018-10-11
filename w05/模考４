@@ -1,0 +1,69 @@
+#include<stdio.h>
+
+int encode(int n)
+{
+	int a,b,c,d,k1,k2,k3,k4;
+	
+	
+	a=n/1000;
+	b=(n-a*1000)/100;
+	c=(n-a*1000-b*100)/10;
+	d=n%10;
+	a+=5;
+	if(a>=10)
+	{
+		a=a-10;
+	}
+	k1=a,k2=b,k3=c,k4=d;
+	a=k3;b=k4;c=k1;d=k2;
+	n=a*1000+b*100+c*10+d;
+	return n;
+	
+}
+
+int decode(int n)
+{
+	int a,b,c,d,k1,k2,k3,k4;
+	a=n/1000;
+	b=(n-a*1000)/100;
+	c=(n-a*1000-b*100)/10;
+	d=n%10;
+	a=a-5;
+	if(a<=0)
+	{
+		a=a+10;
+	}
+	k1=a,k2=b,k3=c,k4=d;
+	a=k3;b=k4;c=k1;d=k2;
+	n=a*1000+b*100+c*10+d;
+	return n;
+	
+}
+
+int main()
+{
+
+	int n;
+		
+		while(1)
+		{
+			printf("Enter N(-1 to exit): ");
+			scanf("%d",&n);
+			
+			
+			if(n==-1)
+			{
+				printf("Bye! 405410209");
+				break;
+			}	
+			else
+			{
+				int ans=encode(n);
+				printf("encode(%d)=%d\n",n,ans);
+				int ans1=decode(ans);
+				printf("decode(%d)=%d\n",ans,n);
+				
+			}
+			
+		}
+}
