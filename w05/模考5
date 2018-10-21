@@ -1,0 +1,84 @@
+#include <stdio.h>
+
+int encode(int n) {
+	int a,b,c,d,k1,k2,k3,k4;
+	a=n/1000;
+	b=(n-a*1000)/100;
+	c=(n-a*1000-b*100)/10;
+	d=n%10;
+	a=a+5;
+	if (a>=10)
+	   a=a-10;
+	k1=a;k2=b;k3=c;k4=d;
+	a=k3;c=k1;b=k4;d=k2;
+	n=a*1000+b*100+c*10+d;
+	return n;
+}
+
+int decode(int n) {
+	int a,b,c,d,k1,k2,k3,k4;
+	a=n/1000;
+	b=(n-a*1000)/100;
+	c=(n-a*1000-b*100)/10;
+	d=n%10;
+	k1=a;k2=b;k3=c;k4=d;
+	a=k3;c=k1;b=k4;d=k2;
+	a=a-5;
+	if (a<=0)
+	   a=a+10;
+	n=a*1000+b*100+c*10+d;
+	return n;
+}
+
+int main () {
+	char a;
+	int n;
+	
+	printf ("(1) Arithmetic Computation\n");
+	printf ("(2) List BMI ranges\n");
+	printf ("(3) Draw Four Vertical Triangles\n");
+	printf ("(4) encode(n)\n");
+	printf ("(5) decode(n)\n");
+	printf ("(6) Exit\n");
+	printf ("Please input the choice: \n");
+	a = getchar ();
+	switch (a)
+	  {
+		case '1':
+			printf ("(1) Arithmetic Computation\n");
+			printf("\n");
+			break;
+		case '2':
+			printf ("(2) List BMI ranges\n");
+			printf("\n");
+			break;
+		case '3':
+			printf ("(3) Draw Four Vertical Triangles\n");
+			printf("\n");
+			break;
+		case '4':
+			printf ("(4) encode(n)\n");
+	        printf("Enter N (-1 to exit):");
+	        scanf("%d", &n);
+	        int ans=encode(n);
+	        printf("encode (%d)=%d\n",n,ans);
+	        printf("\n");
+			break;
+		case '5':
+			printf ("(5) decode(n)\n");
+	        printf("Enter N (-1 to exit):");
+	        scanf("%d", &n);
+	        int ans1=decode(n);
+	        printf("encode (%d)=%d\n",n,ans1);
+	        printf("\n");
+			break;
+		case '6':
+			printf ("(6) Exit\n");
+			printf("\n");
+			break;
+		default:
+			printf("\n");
+	}
+	
+	return 0;
+}
