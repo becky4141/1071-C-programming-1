@@ -1,0 +1,43 @@
+# include <stdio.h>
+
+int gcd(int x,int y);
+
+int main()
+{
+    int xin,yin;
+    int x,y;
+    while(xin!=0 && yin!=0)
+    {
+
+
+    printf("Enter xin and yin: ");
+    scanf("%d %d",&xin,&yin);
+
+    if(xin<yin)
+    {
+        x=yin;
+        y=xin;
+    }
+    else
+    {
+        x=xin;
+        y=yin;
+    }
+    printf("gcd(xin,yin)=%d\n",gcd(x,y));
+    }
+    return 0;
+
+}
+
+int gcd(int x,int y)
+{
+
+    if(y==0)
+    {
+        return x;
+    }
+
+    else
+        return gcd(y,x%y);
+}
+
