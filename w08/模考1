@@ -1,0 +1,62 @@
+# include <stdio.h>
+# include <ctype.h>
+
+int main()
+{
+    int i,n,flag = 0;
+    char cont = 'Y';
+
+
+    while(1)
+    {
+        if(cont == 'Y')
+        {
+
+
+    printf("Enter N: ");
+    scanf("%d",&n);
+
+    for(i = 2;i<=n/2;i++)
+    {
+        if(n%i==0)
+        {
+        flag = 1;
+        break;
+        }
+    }
+
+    if(n==1)
+    {
+        printf("1 is neither a prime nor a composite number.");
+    }
+    else
+    {
+        if(flag==0)
+        {
+        printf("%d is a prime.",n);
+        }
+        else
+        {
+         printf("%d is not a prime.",n);
+        }
+    }
+
+        }
+        else
+        {
+
+            printf("405410209\n");
+            break;
+        }
+    printf("Continue (Y/N)? ");
+    getchar();
+    cont = toupper(getchar());
+    printf("\n");
+
+
+
+    }
+    return 0;
+
+
+}
