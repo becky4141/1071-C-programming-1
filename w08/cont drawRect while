@@ -1,0 +1,41 @@
+# include <stdio.h>
+# include <ctype.h>
+
+void prchar(char c,int n)
+{
+    for(int i=1;i<=n;i++)
+    {
+        printf("%c",c);
+    }
+}
+int main()
+{
+    int height,width;
+    char cont='Y';
+    
+    
+    while(1)
+    {
+        if(cont=='Y')
+        {
+        printf("Enter height and width: ");
+        scanf("%d %d",&height,&width);
+        
+        for(int i=1;i<=height;i++)
+        {
+            prchar('*',width);
+            printf("\n");
+        }
+        }
+        else
+        {
+            printf("405410209\n");
+            break;
+        }
+            
+        printf("Continue(Y/N)? ");
+        getchar();
+        cont=toupper(getchar());
+        printf("\n");
+    }
+}
