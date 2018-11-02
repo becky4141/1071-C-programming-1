@@ -1,49 +1,48 @@
+
 # include <stdio.h>
 
-/*int main()
-{
- int height, width;
- printf("Enter height and width: ");
- scanf("%d %d", &height, &width);
- printf("Draw using iteration\n");
- drawRect(height,width);
- printf("Draw using recursion\n");
- rdrawRect(height,width);
-}
-*/
 void prchar(char c,int n)
 {
     for(int i=1;i<=n;i++)
     {
         printf("%c",c);
+        
+    }
+}
+void drawRect(int height, int width)
+{
+    for(int i=1;i<=height;i++)
+    {
+        prchar('*',width);
+        printf("\n");
     }
 }
 
-void drawRect(int height,int width)
+
+void rdrawRect(int height,int width)
 {
-
-
-        for(int i=1;i<=width;i++)
-        {
-            for(int j=1;j<=height;j++)
-            {
-                printf("*");
-            }
-                printf("*");
-
-                printf("\n");
-
-        }
+    if( height==1)
+    {
+        prchar('*',width);
+        printf("\n");
+    }
+    else
+    {
+        rdrawRect( height-1, width);
+        prchar('*',width);
+        printf("\n");
+    }
+    
 }
-
-
-int main()
+int main(void)
 {
     int height,width;
     printf("Enter height and width: ");
     scanf("%d %d",&height,&width);
-
+    printf("Draw using itertion\n");
     drawRect(height,width);
-}
-
-
+    printf("Draw using recursion\n");
+    rdrawRect( height, width);
+    printf("405410209\n");
+    return 0;
+    }
