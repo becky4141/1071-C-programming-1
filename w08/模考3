@@ -6,7 +6,7 @@ int  checkSqrt(int N)
     for(int i=1;i<=N;i++)
     {
         if(N==i*i)
-            return i;妳想要的什麼值帶回主程式就return那一個值
+            return i;
     }
     return 0;
 }
