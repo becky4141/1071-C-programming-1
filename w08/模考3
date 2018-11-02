@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int  checkSqrt(int N)
+{
+    for(int i=1;i<=N;i++)
+    {
+        if(N==i*i)
+            return i;
+    }
+    return 0;
+}
+        
+
+
+int main(void)
+{
+    int N,i;
+    char cont='Y';
+    
+    while(cont=='Y')
+    {
+    printf("Enter N: ");
+    scanf("%d",&N);
+    i=checkSqrt(N);
+    
+        if(i)
+        {
+            printf("Yes. %d=%dx%d\n",N,i,i);
+            
+        }
+        else
+        {
+            printf("No. \n");
+            printf("405410209\n");
+            break;
+        }
+        
+    printf("Continue(Y/N): ");
+    getchar();
+    cont=toupper(getchar());
+    printf("\n");
+    }
+}
+    
