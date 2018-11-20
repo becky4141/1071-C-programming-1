@@ -1,0 +1,156 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+void prarr (int m[][8])
+{
+    for (int i=0; i<8; i++)
+    {
+        printf("|-----|-----|-----|-----|-----|-----|-----|-----|\n|");
+        for(int j=0; j<8; j++)
+        {
+
+            printf(" %4d|",m[i][j]);
+        }
+        printf("\n");
+    }
+    printf("|-----|-----|-----|-----|-----|-----|-----|-----|");
+    printf("\n");
+}
+struct Pos
+{
+    int row;
+    int col;
+};
+    Pos fib (int m[][8],int a[][8],int row,int col)
+    {
+        int nextrow,nextcol;
+        Pos pos;
+        int min=9;
+        int minrow=-1,mincol=-1;
+        a[row][col]=0;
+        int r[8]= {-2,-1,1,2,2,1,-1,-2};
+        int c[8]= {-1,-2,-2,-1,1,2,2,1};
+        for (int i=0; i<8; i++)
+        {
+            nextrow = row + r[i];
+            nextcol = col + c[i];
+            if(nextrow>=0 && nextrow <=7 && nextcol>=0 && nextcol<=7 && a[nextrow][nextcol]>0)
+            {
+                a[nextrow][nextcol]--;
+                if(a[nextrow][nextcol]<min)
+                {
+                    min = a[nextrow][nextcol];
+                    minrow = nextrow;
+                    mincol = nextcol;
+                }
+            }
+        }
+        pos.row=minrow;
+        pos.col=mincol;
+        return pos;
+    }
+    int knightTour(int m[][8],int row,int col)
+{
+    int moves=1;
+    int a[ 8 ][ 8 ] =
+        {
+            2, 3, 4, 4, 4, 4, 3, 2,
+            3, 4, 6, 6, 6, 6, 4, 3,
+            4, 6, 8, 8, 8, 8, 6, 4,
+            4, 6, 8, 8, 8, 8, 6, 4,
+            4, 6, 8, 8, 8, 8, 6, 4,
+            4, 6, 8, 8, 8, 8, 6, 4,
+            3, 4, 6, 6, 6, 6, 4, 3,
+            2, 3, 4, 4, 4, 4, 3, 2
+        };
+    Pos pos;
+    srand(time(NULL));
+            for(int i=2; i<=64; i++)
+            {
+                if(row==-1&&col==-1)
+                {
+                    break;
+                }
+                else
+                {
+                    pos = fib(m,a,row,col);
+                    m[row][col]=i;
+                    moves++;
+                    row = pos.row;
+                    col = pos.col;
+                }
+            }
+            return moves;
+}
+    int main()
+    {
+        int m[8][8]= {0};
+        int moves = 1;
+        int row,col;
+        int a[ 8 ][ 8 ] =
+        {
+            2, 3, 4, 4, 4, 4, 3, 2,
+            3, 4, 6, 6, 6, 6, 4, 3,
+            4, 6, 8, 8, 8, 8, 6, 4,
+            4, 6, 8, 8, 8, 8, 6, 4,
+            4, 6, 8, 8, 8, 8, 6, 4,
+            4, 6, 8, 8, 8, 8, 6, 4,
+            3, 4, 6, 6, 6, 6, 4, 3,
+            2, 3, 4, 4, 4, 4, 3, 2
+        };
+        Pos pos;
+        srand(time(NULL));
+        int choice;
+        while(1)
+        {
+            printf("1. Knight Tour by entering position\n");
+            printf("2. Check 64 cases\n");
+            printf("3. Exit\n");
+            printf("=>");
+            scanf("%d",&choice);
+            if(choice==3)
+            {
+                return 0;
+            }
+            switch(choice)
+            {
+            case 1:
+                printf("Enter row and col for number 1: ");
+                scanf("%d %d",&row,&col);
+                m[row][col]=1;
+                for(int i=2; i<=64; i++)
+                {
+                    if(pos.row==-1&&pos.col==-1)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        pos = fib(m,a,row,col);
+                        m[pos.row][pos.col]=i;
+                        moves++;
+                        row = pos.row;
+                        col = pos.col;
+                    }
+                }
+                prarr(m);
+                printf("\nTotal moves = %d\n",moves);
+                if(moves==64)
+                {
+                    printf("This was a full tour!\n\n");
+                }
+                break ;
+            case 2:
+                int m[8][8]= {0};
+                int counting[8][8];
+                for(int i=0; i<=7; i++)
+                {
+                for(int j=0; j<=7; j++)
+                    {
+                        counting[i][j] = knightTour(m,i,j);
+                    }
+                }
+                prarr(counting);
+            }
+        }
+    }
