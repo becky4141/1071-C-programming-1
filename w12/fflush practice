@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+    char a[10];
+    char c;
+
+    scanf("%s", &a);
+    fflush(stdin);
+    c = getchar();
+    printf("a = %s, c = %c \n", a, c);
+    return 0;
+}
