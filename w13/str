@@ -1,0 +1,87 @@
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <ctype.h>
+
+void str_reverse(char *str1,char *str2)
+{
+    int j=0;
+    for(int i=strlen(str1)-1;i>=0;i--)
+    {
+        str2[j++] = str1[i];
+    }
+    str2[j] = '\0';
+}
+
+void str_uppercase(char *str1,char *str2)
+{
+    int i=0;
+    for(int i=0;i<strlen(str1);i++)
+    {
+        if(isalpha(str1[i]))
+            str2[i] = toupper(str1[i]);
+        else
+        str2[i] = str1[i];
+    }
+    str2[i] = '\0';
+}
+
+void str_lowercase(char *str1,char *str2)
+{
+    int i=0;
+    for(int i=0;i<strlen(str1);i++)
+    {
+        if(isalpha(str1[i]))
+            str2[i] = tolower(str1[i]);
+        else
+            str2[i] = str1[i];
+    }
+    str2[i] = '\0';
+}
+
+int main()
+{
+    char *str1;
+    char *str2;
+    str1 = (char *)malloc(sizeof(char)*20);
+    str2 = (char *)malloc(sizeof(char)*20);
+
+    gets(str1);
+    str_reverse(str1,str2);
+    printf("\nString reverse\n");
+    printf("str1:%s\n",str1);
+    printf("str2:%s\n",str2);
+
+    int result = strcmp(str1,str2);
+    if(result==0)
+    {
+        printf("str1 and str2 are equal.\n");
+    }
+        else if(result>0)
+        {
+            printf("str1>str2.\n");
+        }
+        else
+        {
+            printf("str1<str2.\n");
+        }
+
+        strcpy(str1,str2);
+        printf("\nString copy\n");
+        printf("str1:%s\n",str1);
+        printf("str2:%s\n",str2);
+        if (strcpy(str1,str2)==0)
+        {
+            printf("str1 and str2 are equal.\n");
+        }
+            else if(strcpy(str1,str2)>0)
+            {
+                printf("str1>str2.\n");
+            }
+            else
+            {
+                printf("str1<str2.\n");
+            }
+
+
+}
