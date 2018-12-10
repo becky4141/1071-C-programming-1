@@ -31,12 +31,12 @@ int main()
 	str2 = (char *)malloc(sizeof(char)*80);
 
 	gets(str1);
-	printf("%s\n",str1);//取得字串
+	printf("str1  =    %s\n",str1);//取得字串
 	str_reverse(str2,str1);
-    printf("%s\n",str2);
-    
+    printf("reverse =  %s\n",str2);
+
     str2 = str1;
     str_copy(str2,str1);
-    printf("%s\n",str2);
+    printf("copy  =    %s\n",str2);
 
-} 
+}
