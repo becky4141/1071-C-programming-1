@@ -1,0 +1,32 @@
+# include <stdio.h>
+# include <stdlib.h>
+
+int main()
+{
+    int i,namespace=3 *startWeekDay;
+    int start=1,end=7-startWeekDay;
+    
+    while(start<=nDays)
+    {
+    for(i=0;i<namespace;i++)
+    {
+        printf(" ");
+    }
+    for(i=start;i<=end;i++)
+    {
+        printf("%2d",i);
+        printf("\n");
+    }
+        namespace=0;
+        start = end+1;
+        if(start+6>nDays)
+        {
+            end = nDays;
+        }
+        else
+        {
+            end = start+6;
+        }
+    }
+    
+} 
