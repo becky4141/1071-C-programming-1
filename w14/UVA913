@@ -1,0 +1,15 @@
+# include <stdio.h>
+# include <stdlib.h>
+
+int main()
+{
+    long long n,k;
+    while(scanf("%lld",&n)!=EOF)
+    {
+        k=(n+1)/2;
+        k=k*k*2-1;
+        k=3*k-6;
+        printf("%lld\n",k);
+    }
+    return 0;
+}
