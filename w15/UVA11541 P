@@ -1,0 +1,36 @@
+# include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main()
+{
+    int T;
+    char letter;
+    int num;
+    int count;
+    while(scanf("%d",&T)!=EOF)
+    {
+        getchar();
+        for(int i=1;i<=T;i++)
+        {
+            count=0;
+            while(letter = getchar() )
+            {
+                if(letter=='\n' || letter=='\r')
+                {
+                    printf("\n");
+                    break;
+                }
+                if(count==0)
+                {
+                    printf("Case %d: ",i);
+                    scanf("%d",&num);
+                    for(int j=0;j<num;j++)
+                        printf("%c",letter);
+                    count++;
+                }
+            }
+        }
+    }
+    return 0;
+}
