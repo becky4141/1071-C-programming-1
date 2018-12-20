@@ -5,6 +5,7 @@
 #define MAX 100
 
 int counter=0;
+FILE *fp;
 
 struct Date{
    int year;
@@ -29,6 +30,7 @@ int duplicate(int num[], int pos){
 void randgen(Lotto lottos[],int n)
 {
   int temp;
+  
         for(int i=0;i<n;i++)
         {
         lottos[counter].date.year = rand()%11+2010;
@@ -45,6 +47,7 @@ void randgen(Lotto lottos[],int n)
                 lottos[counter].num[j] = temp;
                
             }
+            counter++;
        }
 }
 
@@ -60,7 +63,46 @@ void showLottos(Lotto lottos[],int n)
         }
         printf("\n");
     }
+
 }
+
+void writeFile(Lotto lottos[],int n)
+{
+  int choice;
+  char filename[80];
+  printf("Enter filename: ");
+  scanf("%s",filename);
+  printf("Choice: 1 for write over, 2 for append\n=> ");
+  scanf("%d",&choice);
+  if(choice==1)
+  {
+    fp = fopen(filename,"w");
+  }
+  else
+  {
+    fp = fopen(filename,"a");
+  }
+
+  if(fp==NULL)
+  {
+    printf("Error on writing to file.\n");
+  }
+for(int i=0;i<n;i++)
+{
+  fprintf("%d/%02d/%02d   ", lottos[i].date.year, lottos[i].date.month, lottos[i].date.day );
+  for(int j=0;j<6;j++)
+  {
+    fprintf(fp,"%02d ",lottos[i].num[j]);
+    fprintf("\n");
+  }
+}
+
+
+
+
+
+}
+
 int main(){
    Lotto lottos[MAX];
 
@@ -74,4 +116,8 @@ int main(){
     printf("\n");
     randgen(lottos,n);
     showLottos(lottos,counter);
+
+
+    //writeFile(lottos,counter);
+}unter);
 }
