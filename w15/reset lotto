@@ -67,6 +67,20 @@ void showLottos(Lotto lottos[],int n)
 
 }
 
+void resetLottos(Lotto lottos[],int n)
+{
+  for(int i=0;i<n;i++)
+  {
+    lottos[i].date.year=0;
+    lottos[i].date.month=0;
+    lottos[i].date.day=0;
+    for(int j=0;j<6;j++)
+    {
+      lottos[i].num[j]=0;
+    }
+  }
+}
+
 void writeFile(Lotto lottos[],int n)
 {
   int choice;
@@ -121,9 +135,9 @@ void readFile(Lotto lotto[],int n)
     fp = fopen(filename,"a");
   }
 
-  if(fp==NULL)
+  if(fp1==NULL)
   {
-    printf("Error on writing to file.\n");
+    printf("Error on creating  file.\n");
     exit(1);
   }
 }
@@ -146,7 +160,7 @@ int main()
 
     //writeFile(lottos,counter);
     resetLottos(lottos,counter);
-    counter = readFile(lottos);
+    readFile(lottos);
     showLottos(lottos,counter);
 
     }
