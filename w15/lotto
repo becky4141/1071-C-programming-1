@@ -30,30 +30,31 @@ int duplicate(int num[], int pos){
 void randgen(Lotto lottos[],int n)
 {
   int temp;
-  
+
         for(int i=0;i<n;i++)
         {
         lottos[counter].date.year = rand()%11+2010;
         lottos[counter].date.month = rand()%12+1;
         lottos[counter].date.day = rand()%31+1;
-        
+
             for(int j=0;j<6;j++)
             {
                 do
                 {
                     temp = rand()%49+1;
                 }while(duplicate(lottos[counter].num,j));
-                
+
                 lottos[counter].num[j] = temp;
-               
+
             }
             counter++;
        }
 }
 
+
 void showLottos(Lotto lottos[],int n)
 {
-  
+
     for(int i=0;i<n;i++)
     {
         printf("%d/%02d/%02d   ", lottos[i].date.year, lottos[i].date.month, lottos[i].date.day );
@@ -64,6 +65,20 @@ void showLottos(Lotto lottos[],int n)
         printf("\n");
     }
 
+}
+
+void resetLottos(Lotto lottos[],int n)
+{
+  for(int i=0;i<n;i++)
+  {
+    lottos[i].date.year=0;
+    lottos[i].date.month=0;
+    lottos[i].date.day=0;
+    for(int j=0;j<6;j++)
+    {
+      lottos[i].num[j]=0;
+    }
+  }
 }
 
 void writeFile(Lotto lottos[],int n)
@@ -86,24 +101,54 @@ void writeFile(Lotto lottos[],int n)
   if(fp==NULL)
   {
     printf("Error on writing to file.\n");
+    exit(1);
   }
+
 for(int i=0;i<n;i++)
 {
-  fprintf("%d/%02d/%02d   ", lottos[i].date.year, lottos[i].date.month, lottos[i].date.day );
+  fprintf(fp,"%d/%02d/%02d   ", lottos[i].date.year, lottos[i].date.month, lottos[i].date.day );
   for(int j=0;j<6;j++)
   {
     fprintf(fp,"%02d ",lottos[i].num[j]);
-    fprintf("\n");
   }
+  fprintf(fp,"\n");
 }
 
-
-
-
+fclose(fp);
+printf("%d lotto data write to file %s successfully\n",n,filename);
 
 }
 
-int main(){
+void readFile(Lotto lottos[])
+{
+  int choice;
+  char filename[80];
+  printf("Enter filename: ");
+  scanf("%s",filename);
+  fp=fopen(filename,"r");
+
+
+  if(fp==NULL)
+  {
+    printf("Error on creating  file.\n");
+    exit(1);
+  }
+  int i=0;
+  while(fscanf(fp,"%d/%d/%d  %d %d %d %d %d %d",
+               &lottos[i].date.year,&lottos[i].date.month,&lottos[i].date.day,
+               &lottos[i].num[0],&lottos[i].num[1],&lottos[i].num[2],
+               &lottos[i].num[3],&lottos[i].num[4],&lottos[i].num[5])==9)
+  {
+      i++;
+  }
+  counter=i;
+  fclose(fp);
+  printf("%d lotto data read successfully from file %s  \n\n",counter,filename);
+
+}
+
+int main()
+{
    Lotto lottos[MAX];
 
    int n;
@@ -113,11 +158,14 @@ int main(){
     printf("\n");
     randgen(lottos,n);
     showLottos(lottos,counter);
-    printf("\n");
+    //printf("\n");
     randgen(lottos,n);
     showLottos(lottos,counter);
 
 
-    //writeFile(lottos,counter);
-}unter);
+    writeFile(lottos,counter);
+    resetLottos(lottos,counter);
+    readFile(lottos);
+    showLottos(lottos,counter);
+
 }
